@@ -11,12 +11,12 @@ export default function newPost(props) {
 }
 
 /*
-The purpose of the getLayout function is to wrap the page component 
+The purpose of the getLayoutFunc is to wrap the page component 
 with the AppLayout component and provide the pageProps to it. 
 This allows you to define a consistent layout structure that surrounds 
 the content of your page.
 */
-newPost.getLayout = function getLayout(page, pageProps) {
+newPost.getLayoutFunc = function getLayout(page, pageProps) {
   return <AppLayout {...pageProps}>{page}</AppLayout>;
 };
 

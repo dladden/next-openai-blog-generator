@@ -3,7 +3,7 @@ import { UserProvider } from "@auth0/nextjs-auth0/client";
 
 function MyApp({ Component, pageProps }) {
   //checking to see if the component has the getLayout function or render without
-  const getLayout = Component.getLayout || ((page) => page);
+  const getLayout = Component.getLayoutFunc || ((page) => page);
   return (
     <UserProvider>
       {getLayout(<Component {...pageProps} />, pageProps)}
