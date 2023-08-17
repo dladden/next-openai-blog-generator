@@ -1,4 +1,4 @@
-import { AppLayout } from "@/components/AppLayout";
+import { Layout } from "@/components/layout/Layout";
 import { withPageAuthRequired } from "@auth0/nextjs-auth0";
 
 export default function newPost(props) {
@@ -12,12 +12,12 @@ export default function newPost(props) {
 
 /*
 The purpose of the getLayoutFunc is to wrap the page component 
-with the AppLayout component and provide the pageProps to it. 
+with the Layout component and provide the pageProps to it. 
 This allows you to define a consistent layout structure that surrounds 
 the content of your page.
 */
 newPost.getLayoutFunc = function getLayout(page, pageProps) {
-  return <AppLayout {...pageProps}>{page}</AppLayout>;
+  return <Layout {...pageProps}>{page}</Layout>;
 };
 
 //this special function runs server-side when requested
