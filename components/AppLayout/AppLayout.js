@@ -1,6 +1,8 @@
+import React from "react";
 import { UseUser } from "@auth0/nextjs-auth0/client";
 import Image from "next/image";
 import Link from "next/link";
+import { PlusIcon } from "@heroicons/react/20/solid";
 /*
 AppLayout will rander the layout and will take on value from children
  */
@@ -17,9 +19,10 @@ export const AppLayout = ({ children }) => {
           <div>logo</div>
           <Link
             href="blog-post/new"
-            className="bg-transparent hover:bg-neutral-900 text-neutral-900 font-semibold hover:text-white py-2 px-4 border border-neutral-800 hover:border-transparent rounded tracking-wider w-full block text-center"
+            className="bg-transparent hover:bg-neutral-900 text-neutral-900 font-semibold hover:text-white py-2 px-4 border border-neutral-800 hover:border-transparent rounded tracking-wider w-full block text-center flex items-center justify-center"
           >
-            new post
+            <PlusIcon className="w-5 h-6 mr-1" />
+            New Post
           </Link>
         </div>
         {/* POST LIST */}
