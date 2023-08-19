@@ -24,14 +24,14 @@ export const Layout = ({ props, children }) => {
         {/* <Navbar onMenuButtonClick={() => setShowSidebar()} /> */}
       </div>
       {/* SIDEBAR */}
-      <div className="grid grid-cols-sidebar  bg-white">
+      <div className="flex  bg-white">
         <div
           className={`flex ${
             open ? "w-72" : "w-20"
-          }  duration-200 flex-col text-white overflow-hidden`}
+          }  duration-200 h-screen flex-col text-white overflow-hidden`}
         >
-          {/* NEW-POST */}
-          <div className="bg-neutral-200 px-4">
+          {/* NEW-POST-BUTTON */}
+          <div className="bg-neutral-200 px-4 mt-[64px]">
             <Link
               href="blog-post/new"
               className=" w-40 bg-transparent hover:bg-neutral-900 text-neutral-900 font-semibold hover:text-white border border-neutral-800 hover:border-transparent rounded tracking-wider text-center flex items-center justify-start py-2 px-4"
