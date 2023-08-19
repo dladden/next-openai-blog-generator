@@ -1,15 +1,17 @@
 import React from "react";
 import Navbar from "./Navbar";
 import { useState } from "react";
-import { UseUser } from "@auth0/nextjs-auth0/client";
+import { useUser } from "@auth0/nextjs-auth0/client";
 import Image from "next/image";
 import Link from "next/link";
 import { PlusIcon } from "@heroicons/react/20/solid";
 /*
 Layout will rander the layout and will take on value from children
  */
-export const Layout = ({ children, props }) => {
+export const Layout = ({ props, children }) => {
+  const { user } = useUser();
   const [showSidebar, setShowSidebar] = useState(false);
+  console.log(showSidebar);
   return (
     /*
     SIDEBAR: Using h-screen-"height of the screen" to set 
@@ -41,7 +43,26 @@ export const Layout = ({ children, props }) => {
           {/* USER & LOGOUT */}
           <div className="bg-neutral-200">
             <Link href="/credit-purchase">tokens</Link>
-            <div>user logout</div>
+            <div className="flex items-center gap-2 border-t border-t-black/50 h-9 px-2">
+              {!!user ? (
+                <>
+                  <div>
+                    <Image
+                      src={user.picture}
+                      alt={user.name}
+                      height={50}
+                      width={50}
+                    />
+                  </div>
+                  <div>
+                    <div>{user.email}</div>
+                  </div>
+                  <Link href="/api/auth/logout">logout</Link>
+                </>
+              ) : (
+                <Link href="/api/auth/login">login</Link>
+              )}
+            </div>
           </div>
         </div>
         <div className="">{children}</div>
