@@ -64,11 +64,12 @@ export const Layout = ({ props, children }) => {
               } duration-200`}
             >
               <Link
-                className="bg-transparent hover:bg-neutral-900 text-neutral-900 font-semibold hover:text-white border border-neutral-800 hover:border-transparent rounded text-center flex items-center py-2 px-3 space-x-4"
+                className="bg-transparent hover:bg-neutral-900 text-neutral-900 font-semibold hover:text-white border border-neutral-800 hover:border-transparent rounded text-center flex items-center py-2 px-3 space-x-6"
                 href="/credit-purchase"
               >
                 <WalletIcon className="flex-none w-5 h-6" />
-                <span className={`${!open && "scale-0"}`}>Credits:</span>
+                <span className={`${!open && "scale-0"} flex-1`}>Credits:</span>
+                <span className={`${!open && "scale-0"} flex-1`}>20</span>
               </Link>
             </div>
           </div>

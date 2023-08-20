@@ -9,6 +9,11 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        logo: "var(--font-ubuntu)",
+        body: "var(--font-open-serif)",
+        heading: "var(--font-open-serif)",
+      },
       gridTemplateColumns: {
         sidebar: "300px auto", //  for sidebar layout. adds grid-cols-sidebar class
       },

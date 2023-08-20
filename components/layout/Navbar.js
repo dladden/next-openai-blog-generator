@@ -16,7 +16,7 @@ const Navbar = (props) => {
       <div className="font-bold text-lg inline-flex mr-2">
         <Image src="/textflow-02.svg" alt="me" width="42" height="42" />
       </div>
-      <div className="flex font-medium items-center justify-center">
+      <div className="flex font-medium items-center justify-center font-logo">
         textFlow AI
       </div>
       <div className="flex-grow"></div> {/** spacer */}
