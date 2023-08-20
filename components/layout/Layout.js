@@ -31,13 +31,17 @@ export const Layout = ({ props, children }) => {
           }  duration-200 h-screen flex-col text-white overflow-hidden`}
         >
           {/* NEW-POST-BUTTON */}
-          <div className="bg-neutral-200 px-4 mt-[64px]">
+          <div
+            className={`bg-neutral-200 px-4 mt-[64px] ${
+              open && "inline-flex"
+            } p-4 justify-between`}
+          >
             <Link
               href="blog-post/new"
-              className=" w-40 bg-transparent hover:bg-neutral-900 text-neutral-900 font-semibold hover:text-white border border-neutral-800 hover:border-transparent rounded tracking-wider text-center flex items-center justify-start py-2 px-4"
+              className=" bg-transparent hover:bg-neutral-900 text-neutral-900 font-semibold hover:text-white border border-neutral-800 hover:border-transparent rounded text-center flex items-center py-2 px-3"
             >
-              <PlusIcon className="w-5 h-6 mr-1 " />
-              <span className="hidden md:inline">New Post</span>
+              <PlusIcon className="w-5 h-6" />
+              <span className={`${!open && "scale-0"}`}>New Post</span>
             </Link>
             <ChevronLeftIcon
               onClick={() => setOpen(!open)}
@@ -53,7 +57,11 @@ export const Layout = ({ props, children }) => {
           </div>
           {/* USER & LOGOUT */}
           <div className="bg-neutral-200">
-            <div className="flex items-center gap-2 border-t border-t-black/60 h-20 px-2">
+            <div
+              className={`${
+                open && "flex "
+              } items-center gap-2 border-t border-t-black/60 h-20 px-2`}
+            >
               {!!user ? (
                 <>
                   <div className="min-w=[50px]">
@@ -65,12 +73,14 @@ export const Layout = ({ props, children }) => {
                       className="rounded-full"
                     />
                   </div>
-                  <di className="flex-1">
-                    <div className="font-bold">{user.email}</div>
-                    <Link className="text-sm" href="/api/auth/logout">
-                      logout
-                    </Link>
-                  </di>
+                  <div className="">
+                    <div className={`font-bold ${!open && "scale-0"}`}>
+                      {user.email}
+                    </div>
+                    <div className={`text-sm ${!open && "scale-0"}`}>
+                      <Link href="/api/auth/logout">logout</Link>
+                    </div>
+                  </div>
                 </>
               ) : (
                 <Link href="/api/auth/login">login</Link>
@@ -78,7 +88,7 @@ export const Layout = ({ props, children }) => {
             </div>
           </div>
         </div>
-        <div className="">{children}</div>
+        <div className="mt-[64px]">{children}</div>
       </div>
     </div>
   );
