@@ -2,26 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url("https://fonts.googleapis.com/css2?family=Ubuntu&display=swap");
-
 /* Apply the font to a specific class or element */
 .custom-font {
   font-family: "Ubuntu", sans-serif;
 }
-/* :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+.custom-svg {
+  background-image: url("../public/textflow-cover-02.svg");
+  /* background-size: cover; */
+  /* Additional background properties as needed */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
- */
 body {
   font-family: "Ubuntu", sans-serif;
   color: rgb(var(--foreground-rgb));
