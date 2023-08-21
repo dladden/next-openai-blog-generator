@@ -12,7 +12,7 @@
   /* Additional background properties as needed */
 }
 
-body {
+/* body {
   font-family: "Ubuntu", sans-serif;
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
@@ -21,4 +21,4 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
-}
+} */
