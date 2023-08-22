@@ -8,17 +8,11 @@
 }
 .custom-svg {
   background-image: url("../public/textflow-cover-02.svg");
-  /* background-size: cover; */
   /* Additional background properties as needed */
 }
-
-/* body {
-  font-family: "Ubuntu", sans-serif;
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-} */
+/* global styling which is accessed through layer and can be OVERWRITTEN!! */
+@layer components {
+  .btn {
+    @apply bg-transparent hover:bg-neutral-900 text-neutral-900 font-semibold hover:text-white border border-neutral-800 hover:border-transparent rounded text-center items-center;
+  }
+}

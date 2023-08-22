@@ -28,10 +28,7 @@ export default function Home() {
             Create Optimized Blog Posts for your website.
           </h1>
 
-          <Link
-            href="blog-post/new"
-            className="inline-flex bg-transparent hover:bg-neutral-900 text-neutral-900 font-semibold hover:text-white border border-neutral-800 hover:border-transparent rounded text-center items-center px-4 py-2"
-          >
+          <Link href="blog-post/new" className="btn inline-flex px-4 py-2">
             <span className="px-2">Start Now</span>
             <ArrowSmallRightIcon className=" w-7 h-7" />
           </Link>

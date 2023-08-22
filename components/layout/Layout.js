@@ -40,10 +40,7 @@ export const Layout = ({ props, children }) => {
               open && "inline-flex space-y-0"
             } duration-200 p-4 justify-between`}
           >
-            <Link
-              href="blog-post/new"
-              className=" bg-transparent hover:bg-neutral-900 text-neutral-900 font-semibold hover:text-white border border-neutral-800 hover:border-transparent rounded text-center flex items-center px-2 "
-            >
+            <Link href="blog-post/new" className=" btn flex px-2 ">
               <PlusIcon className="flex-none w-7 h-7" />
               <span className={`${!open && "scale-0"} px-2`}>New Post</span>
             </Link>
@@ -91,11 +88,11 @@ export const Layout = ({ props, children }) => {
                       className="rounded-full"
                     />
                   </div>
-                  <div className="">
+                  <div>
                     <div className={`font-bold ${!open && "scale-0"}`}>
                       {user.email}
                     </div>
-                    <div className={`text-sm ${!open && "scale-0"}`}>
+                    <div className="">
                       <Link href="/api/auth/logout">logout</Link>
                     </div>
                   </div>
