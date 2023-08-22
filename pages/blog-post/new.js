@@ -3,9 +3,22 @@ import { withPageAuthRequired } from "@auth0/nextjs-auth0";
 
 export default function newPost(props) {
   console.log(props);
+  //function which will query new api endpoint for the postGenerator
+  const handleClick = async () => {
+    //async which returns a promise
+    const response = await fetch(`/api/postGenerator`, {
+      method: "POST",
+    });
+    //Grabbing the response
+    const json = await response.json();
+    console.log("Response: ", json);
+  };
   return (
     <div>
       <h1>TextFlow AI: New Post</h1>
+      <button className="btn" onClick={handleClick}>
+        Generate
+      </button>
     </div>
   );
 }
