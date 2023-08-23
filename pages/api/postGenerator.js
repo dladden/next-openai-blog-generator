@@ -2,7 +2,8 @@
 import { OpenAIApi, Configuration } from "openai";
 
 /*
-Endpoint API 
+Endpoint API
+When API call resolves the solution or the prompt solution is in object.choices.[Object] array
  */
 export default async function handler(req, res) {
   const config = new Configuration({
@@ -16,10 +17,11 @@ export default async function handler(req, res) {
     model: "text-davinci-003",
     temperature: 0,
     max_tokens: 3600,
-    promt: "prompt about what GPT should generate",
+    prompt:
+      "Generate blog post about the benefits of using openAI ChaptGPT4 API rather to ChatPGT3",
   });
 
   console.log("GPT Response: ", response);
 
-  res.status(200).json({ name: "post generator" });
+  res.status(200).json({ post: response.data.choices });
 }
