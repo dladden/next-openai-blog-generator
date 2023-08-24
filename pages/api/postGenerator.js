@@ -34,7 +34,13 @@ export default async function handler(req, res) {
 
   console.log("GPT Response: ", response);
   /*
-    Response is parsed in JSON format grabbed out of choice 0 (openai sends 4) and accessing the text with ".?"
+    Response is parsed in JSON format grabbed out of choice 0 (openai sends 4)
+    and accessing the text with ".?". Additionally removing \n markers with
+    split and join them with empty string
   */
-  res.status(200).json({ post: JSON.parse(response.data.choices[0]?.text) });
+  res
+    .status(200)
+    .json({
+      post: JSON.parse(response.data.choices[0]?.text.split("\n").join("")),
+    });
 }
