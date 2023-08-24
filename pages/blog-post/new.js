@@ -1,17 +1,22 @@
 import { Layout } from "@/components/layout/Layout";
 import { withPageAuthRequired } from "@auth0/nextjs-auth0";
+import { useState } from "react";
 
 export default function newPost(props) {
   console.log(props);
+  //Saving the postContent into local state
+  const [postContent, setPostContent] = useState("");
   //function which will query new api endpoint for the postGenerator
   const handleClick = async () => {
     //async which returns a promise
     const response = await fetch(`/api/postGenerator`, {
       method: "POST",
     });
-    //Grabbing the response
+    //Grabbing the response from the postGenerator.js
     const json = await response.json();
-    console.log("Response: ", json);
+    console.log("Response: ", json.post.postContent);
+    //setting the string
+    setPostContent(json.post.postContent);
   };
   return (
     <div>
@@ -19,6 +24,10 @@ export default function newPost(props) {
       <button className="btn" onClick={handleClick}>
         Generate
       </button>
+      <div
+        className="max-w-screen-sm p-10"
+        dangerouslySetInnerHTML={{ __html: postContent }}
+      />
     </div>
   );
 }
