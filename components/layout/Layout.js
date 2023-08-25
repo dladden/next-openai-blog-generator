@@ -22,13 +22,13 @@ export const Layout = ({ props, children }) => {
     SIDEBAR: Using h-screen-"height of the screen" to set 
     up the sidebar which does not moves with the rest of the screen
      */
-    <div className="grid  min-h-screen grid-rows-header">
+    <div className="grid flex-row h-screen">
       <div className="bg-white shadow-sm z-10">
         <Navbar />
         {/* <Navbar onMenuButtonClick={() => setShowSidebar()} /> */}
       </div>
       {/*---------------- SIDEBAR ----------------*/}
-      <div className="flex justify-start  bg-white">
+      <div className="flex h-full max-h-screen overflow-y-auto  bg-white">
         <div
           className={`flex ${
             open ? "w-72" : "w-20"
@@ -105,7 +105,9 @@ export const Layout = ({ props, children }) => {
             </div>
           </div>
         </div>
-        <div className="mt-[64px]">{children}</div>
+        <div className="mt-[64px] w-full max-h-screen overflow-y-auto">
+          {children}
+        </div>
       </div>
     </div>
   );
