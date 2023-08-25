@@ -4,10 +4,15 @@ import { useState } from "react";
 
 export default function newPost(props) {
   console.log(props);
+  //local states for the topic and keywords
+  const [topic, setTopic] = useState("");
+  const [keywords, setKeywords] = useState("");
   //Saving the postContent into local state
   const [postContent, setPostContent] = useState("");
   //function which will query new api endpoint for the postGenerator
-  const handleClick = async () => {
+  const handleSubmit = async (e) => {
+    //preventing default posting to itself
+    e.preventDefault();
     //async which returns a promise
     const response = await fetch(`/api/postGenerator`, {
       method: "POST",
@@ -20,10 +25,32 @@ export default function newPost(props) {
   };
   return (
     <div>
-      <h1>TextFlow AI: New Post</h1>
-      <button className="btn" onClick={handleClick}>
-        Generate
-      </button>
+      {/* FORM SECTION */}
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label>
+            <strong>Topic:</strong>
+          </label>
+          <textarea
+            className=" resize-none border border-neutral-300 w-[30rem] my-2 px-10 py-2 rounded"
+            value={topic}
+            onChange={(e) => setTopic(e.target.value)}
+          />
+        </div>
+        <div>
+          <label>
+            <strong>Keywords:</strong>
+          </label>
+          <textarea
+            className=" resize-none border border-neutral-300 w-[30rem] my-2 px-4 py-2 rounded"
+            value={keywords}
+            onChange={(e) => setKeywords(e.target.value)}
+          />
+        </div>
+        <button type="submit" className="btn">
+          Generate
+        </button>
+      </form>
       <div
         className="max-w-screen-sm p-10"
         dangerouslySetInnerHTML={{ __html: postContent }}
