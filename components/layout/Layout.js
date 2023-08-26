@@ -1,4 +1,5 @@
 import React from "react";
+import { ScrollToTop } from "@/components/layout/ScrollToTop";
 import Navbar from "./Navbar";
 import { useState } from "react";
 import { useUser } from "@auth0/nextjs-auth0/client";

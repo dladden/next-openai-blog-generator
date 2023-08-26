@@ -1,4 +1,5 @@
 import { Layout } from "@/components/layout/Layout";
+import { ScrollToTop } from "@/components/layout/ScrollToTop";
 import { withPageAuthRequired } from "@auth0/nextjs-auth0";
 import { useState } from "react";
 
@@ -13,9 +14,13 @@ export default function newPost(props) {
   const handleSubmit = async (e) => {
     //preventing default posting to itself
     e.preventDefault();
-    //async which returns a promise
+    //async which returns a promise and passes data through req in postGenerator in JSON format
     const response = await fetch(`/api/postGenerator`, {
       method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({ topic, keywords }),
     });
     //Grabbing the response from the postGenerator.js
     const json = await response.json();
