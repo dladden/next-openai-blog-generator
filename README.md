@@ -36,3 +36,13 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+OpenAI's "Conversational AI" framework is designed to facilitate dynamic and interactive conversations.
+
+Roles:
+
+User: The User is you or the person interacting with the system. You provide input to the conversation and receive responses from the Assistant. Your inputs can be in the form of messages or prompts, and they guide the direction of the conversation.
+
+Assistant: The Assistant is the language model, such as GPT-3.5-turbo, which generates responses based on the conversation's context. It takes the messages from both the User and the System as input and generates a coherent and contextually relevant response. The Assistant's responses are designed to simulate natural conversation.
+
+System: The System is a part of the conversational setup that helps guide the behavior of the Assistant. It provides high-level instructions or context to the Assistant, helping it stay on topic or adopt a specific tone. The System's role is to influence the style, content, or behavior of the Assistant throughout the conversation.

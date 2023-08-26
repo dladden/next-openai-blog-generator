@@ -7,7 +7,9 @@ export default function newPost(props) {
   console.log(props);
   //local states for the topic and keywords
   const [topic, setTopic] = useState("");
+  console.log(topic);
   const [keywords, setKeywords] = useState("");
+  console.log(keywords);
   //Saving the postContent into local state
   const [postContent, setPostContent] = useState("");
   //function which will query new api endpoint for the postGenerator
@@ -22,6 +24,7 @@ export default function newPost(props) {
       },
       body: JSON.stringify({ topic, keywords }),
     });
+
     //Grabbing the response from the postGenerator.js
     const json = await response.json();
     console.log("Response: ", json.post.postContent);
