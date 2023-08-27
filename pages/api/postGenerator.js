@@ -38,7 +38,6 @@ role:
 system - instructions supplied to openai on its behavior
 user - message which will be sent
 assistant - 
-
 */
   const postContentResponse = await openai.createChatCompletion({
     model: "gpt-3.5-turbo",
@@ -55,13 +54,75 @@ assistant -
       The response must be limited to the appropriate HTML tags: p, h1, h2, h3, h4, h5, h6, strong, li, ol, ul, i, code, pre `,
       },
     ],
-  });
-  console.log(keywords, topic);
+  }); //end POST CONTENT
 
-  console.log(
-    "GPT Response: ",
-    postContentResponse.data.choices[0]?.message?.content
-  );
+  //variable for the response (if null default to empty string)
+  const postResponse =
+    postContentResponse.data.choices[0]?.message?.content || "";
+
+  /*
+  Using the response from gpt3.5 which is stored in postResponse 
+  */
+  const titleContentResponse = await openai.createChatCompletion({
+    model: "gpt-3.5-turbo",
+    temperature: 0,
+    messages: [
+      {
+        role: "system",
+        content: "You are a Blog Post generator",
+      },
+      {
+        role: "user",
+        content: `Lets do this step by step, write a long detailed SEO-friendly 1500 blog post about ${topic}, that targets the following keywords: ${keywords}.
+      The content should be formatted in SEO-friendly HTML.
+      The response must be limited to the appropriate HTML tags: p, h1, h2, h3, h4, h5, h6, strong, li, ol, ul, i, code, pre `,
+      },
+      {
+        role: "assistant",
+        content: postResponse,
+      },
+      {
+        role: "user",
+        content: "Generate appropriate tittle tag text for the above blog post",
+      },
+    ],
+  }); //end TITLE TAG
+
+  const metaDescriptionResponse = await openai.createChatCompletion({
+    model: "gpt-3.5-turbo",
+    temperature: 0,
+    messages: [
+      {
+        role: "system",
+        content: "You are a Blog Post generator",
+      },
+      {
+        role: "user",
+        content: `Lets do this step by step, write a long detailed SEO-friendly 1500 blog post about ${topic}, that targets the following keywords: ${keywords}.
+      The content should be formatted in SEO-friendly HTML.
+      The response must be limited to the appropriate HTML tags: p, h1, h2, h3, h4, h5, h6, strong, li, ol, ul, i, code, pre `,
+      },
+      {
+        role: "assistant",
+        content: postResponse,
+      },
+      {
+        role: "user",
+        content:
+          "Generate SEO-friendly meta description for the above blog post",
+      },
+    ],
+  }); //end META DESCRIPTION
+
+  //variable for title
+  const title = titleContentResponse.data.choices[0]?.message?.content || "";
+  //variable for meta tag
+  const metaDescription =
+    metaDescriptionResponse.data.choices[0]?.message?.content || "";
+
+  console.log("GPT Response: ", postResponse);
+  console.log("GPT Title Response: ", title);
+  console.log("GPT META TAG Response: ", metaDescription);
   /*
     Response is parsed in JSON format grabbed out of choice 0 (openai sends 4)
     and accessing the text with ".?". Additionally removing \n markers with
