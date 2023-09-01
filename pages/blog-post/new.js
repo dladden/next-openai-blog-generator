@@ -16,7 +16,7 @@ export default function newPost(props) {
   const handleSubmit = async (e) => {
     //preventing default posting to itself
     e.preventDefault();
-    //async which returns a promise and passes data through req in postGenerator in JSON format
+    //async which sends a promise and passes data through req in postGenerator in JSON format
     const response = await fetch(`/api/postGenerator`, {
       method: "POST",
       headers: {
@@ -27,9 +27,10 @@ export default function newPost(props) {
 
     //Grabbing the response from the postGenerator.js
     const json = await response.json();
-    console.log("Response: ", json.post.postContent);
+    console.log("Response: ", json);
     //setting the string
     setPostContent(json.post.postContent);
+    console.log(postContent);
   };
   return (
     <div>

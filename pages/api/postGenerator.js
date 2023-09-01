@@ -128,7 +128,11 @@ assistant -
     and accessing the text with ".?". Additionally removing \n markers with
     split and join them with empty string
   */
-  // res.status(200).json({
-  //   post: JSON.parse(response.data.choices[0]?.text.split("\n").join("")),
-  // });
+  res.status(200).json({
+    post: {
+      postResponse,
+      title,
+      metaDescription,
+    },
+  });
 }
