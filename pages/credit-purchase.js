@@ -2,9 +2,20 @@ import { withPageAuthRequired } from "@auth0/nextjs-auth0";
 import { Layout } from "@/components/layout";
 
 export default function creditPurchase() {
+  //hitting the endpoint of currently signed in user
+  const handleClick = async () => {
+    await fetch(`/api/addCredits`, {
+      method: "POST",
+    });
+  };
+
   return (
     <div>
       <h1> Credit Purchase</h1>
+      <button className="btn px-4 py-2" onClick={handleClick}>
+        {" "}
+        add credits{" "}
+      </button>
     </div>
   );
 }

@@ -46,3 +46,15 @@ User: The User is you or the person interacting with the system. You provide inp
 Assistant: The Assistant is the language model, such as GPT-3.5-turbo, which generates responses based on the conversation's context. It takes the messages from both the User and the System as input and generates a coherent and contextually relevant response. The Assistant's responses are designed to simulate natural conversation.
 
 System: The System is a part of the conversational setup that helps guide the behavior of the Assistant. It provides high-level instructions or context to the Assistant, helping it stay on topic or adopt a specific tone. The System's role is to influence the style, content, or behavior of the Assistant throughout the conversation.
+
+This project uses MongoDB Atlas
+
+MongoDB Atlas:
+
+MongoDB Atlas is a Database as a Service (DBaaS) provided by MongoDB, Inc. It's a cloud-based platform designed to simplify the deployment, scaling, and management of MongoDB databases.
+
+MongoDB Atlas offers a fully managed and automated MongoDB service in the cloud. You don't need to worry about infrastructure provisioning, setup, or day-to-day operations.
+
+It provides features like automated backups, scaling, monitoring, security, and integration with other cloud services (e.g., AWS, Azure, Google Cloud).
+
+MongoDB Atlas is particularly useful when you want to focus more on developing your application and less on managing the underlying database infrastructure.

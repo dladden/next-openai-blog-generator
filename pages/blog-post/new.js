@@ -55,7 +55,7 @@ export default function newPost(props) {
             onChange={(e) => setKeywords(e.target.value)}
           />
         </div>
-        <button type="submit" className="btn">
+        <button type="submit" className="btn px-4 py-2">
           Generate
         </button>
       </form>
