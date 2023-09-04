@@ -1,11 +1,12 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+import { withApiAuthRequired } from "@auth0/nextjs-auth0";
 import { OpenAIApi, Configuration } from "openai";
 
 /*
 Endpoint API
 When API call resolves the solution or the prompt solution is in object.choices.[Object] array
  */
-export default async function handler(req, res) {
+export default withApiAuthRequired(async function handler(req, res) {
   const config = new Configuration({
     apiKey: process.env.OPENAI_API_KEY,
   }); //end config
@@ -135,4 +136,4 @@ assistant -
       metaDescription,
     },
   });
-}
+});
