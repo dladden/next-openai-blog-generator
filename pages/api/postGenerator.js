@@ -1,5 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import { withApiAuthRequired } from "@auth0/nextjs-auth0";
+import clientPromise from "@/lib/mongodb";
+import { getSession, withApiAuthRequired } from "@auth0/nextjs-auth0";
 import { OpenAIApi, Configuration } from "openai";
 
 /*
@@ -7,6 +8,22 @@ Endpoint API
 When API call resolves the solution or the prompt solution is in object.choices.[Object] array
  */
 export default withApiAuthRequired(async function handler(req, res) {
+  //importing the user
+  const { user } = getSession(req, res);
+  //check if current user has credits from mongodb
+  const client = await clientPromise;
+  //connecting to the database
+  const db = client.db("textFlow");
+  //grabbing the user whose sub matches the current user
+  const userProfile = db.collection("users").findOne({
+    auth0Id: user.sub,
+  });
+  //if user returned check the tokens if false return 403
+  if (!userProfile?.availableCredits) {
+    res.status(403);
+    return;
+  }
+
   const config = new Configuration({
     apiKey: process.env.OPENAI_API_KEY,
   }); //end config
