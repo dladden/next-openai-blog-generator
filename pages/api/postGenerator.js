@@ -9,13 +9,13 @@ When API call resolves the solution or the prompt solution is in object.choices.
  */
 export default withApiAuthRequired(async function handler(req, res) {
   //importing the user
-  const { user } = getSession(req, res);
+  const { user } = await getSession(req, res);
   //check if current user has credits from mongodb
   const client = await clientPromise;
   //connecting to the database
   const db = client.db("textFlow");
   //grabbing the user whose sub matches the current user
-  const userProfile = db.collection("users").findOne({
+  const userProfile = await db.collection("users").findOne({
     auth0Id: user.sub,
   });
   //if user returned check the tokens if false return 403
@@ -33,22 +33,6 @@ export default withApiAuthRequired(async function handler(req, res) {
   const { topic, keywords } = req.body;
   console.log(topic, keywords);
 
-  //Calling openai api and passing the object model gpt3, temperature "accuracy risk" between 0 and 1
-  //Where 0 is lowest risk, max tokens (with gpt3 it is 4000), and prompt
-  // const response = await openai.createCompletion({
-  //   model: "text-davinci-003",
-  //   temperature: 0,
-  //   max_tokens: 3600,
-  //   prompt: `Lets do this step by step, write a long detailed SEO-friendly 1500 blog post about ${topic}, that targets the following keywords: ${keywords}.
-  //   The content should be formatted in SEO-friendly HTML.
-  //   The response must also include appropriate HTML tittle and meta description content.
-  //   The return format must stringified JSON in the following format:{
-  //       "postContent": post content goes here
-  //       "title": title goes here
-  //       "metaDescription": meta description goes here
-  //   }
-  //   `,
-  // });
   /*
 Testing the GPT3.5 model (no need max_token specification
 it is automatically set to infinity). Messages:
@@ -141,6 +125,37 @@ assistant -
   console.log("GPT Response: ", postResponse);
   console.log("GPT Title Response: ", title);
   console.log("GPT META TAG Response: ", metaDescription);
+
+  //blog post has been generated, decrement credit by one. And increment by -1
+  await db.collection("users").updateOne(
+    {
+      auth0Id: user.sub,
+    },
+    {
+      $inc: {
+        availableCredits: -1,
+      },
+    }
+  );
+  //parsing the blog posts
+  // const parsed = JSON.parse(res.data.choices[0]?.text.split("\n").join(""));
+
+  /*inserting the generated post into the mongodb. Using optional 
+  chain "?" incase parsed is undefined. Using parsing to parse blogs.
+  Storing keywords and topic. Specifying the user to which the data
+  belongs to "userProfile._id" _id is automatically generated id by mongodb.
+  The date the collection insert is generated
+   */
+  const post = await db.collection("posts").insertOne({
+    postContent: postResponse || "",
+    title: title || "",
+    postDescription: metaDescription || "",
+    topic,
+    keywords,
+    userId: userProfile._id,
+    created: new Date(),
+  });
+
   /*
     Response is parsed in JSON format grabbed out of choice 0 (openai sends 4)
     and accessing the text with ".?". Additionally removing \n markers with
