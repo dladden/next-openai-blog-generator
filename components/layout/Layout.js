@@ -56,12 +56,13 @@ export const Layout = ({ props, children }) => {
           <div className="relative flex-1 overflow-auto h-72 bg-[radial-gradient(circle_at_bottom_left,_var(--tw-gradient-stops))] from-neutral-200 via-neutral-400 to-neutral-300">
             <div>post list post list</div>
           </div>
+
           {/*---------------- USER & LOGOUT ----------------*/}
           <div className="bg-neutral-200">
             <div
               className={`${
-                open && "flex "
-              } items-center gap-2 border-t border-t-black/60 h-[8rem] px-2`}
+                open && "flex"
+              }  gap-2 border-t border-t-black/60 h-[8rem] px-2`}
             >
               <div className="">
                 {!!user ? (
@@ -88,21 +89,23 @@ export const Layout = ({ props, children }) => {
                   <Link href="/api/auth/login">login</Link>
                 )}
               </div>
-            </div>
-            {/*---------------- CREDITS ----------------*/}
-            <div
-              className={`absolute bottom-0 mb-4 left-4 w-auto  ${
-                !open && "w-[3rem]"
-              } duration-200`}
-            >
-              <Link
-                className="bg-transparent hover:bg-neutral-900 text-neutral-900 font-semibold hover:text-white border border-neutral-800 hover:border-transparent rounded text-center flex items-center py-2 px-2 space-x-6"
-                href="/credit-purchase"
+              {/*---------------- CREDITS ----------------*/}
+              <div
+                className={`absolute mb-4 left-4 w-auto  ${
+                  !open && "w-[3rem]"
+                } duration-200`}
               >
-                <WalletIcon className="flex-none w-5 h-6" />
-                <span className={`${!open && "scale-0"} flex-1`}>Credits:</span>
-                <span className={`${!open && "scale-0"} flex-1`}>20</span>
-              </Link>
+                <Link
+                  className="bg-transparent hover:bg-neutral-900 text-neutral-900 font-semibold hover:text-white border border-neutral-800 hover:border-transparent rounded text-center flex items-center py-2 px-2 space-x-6"
+                  href="/credit-purchase"
+                >
+                  <WalletIcon className="flex-none w-5 h-6" />
+                  <span className={`${!open && "scale-0"} flex-1`}>
+                    Credits:
+                  </span>
+                  <span className={`${!open && "scale-0"} flex-1`}>20</span>
+                </Link>
+              </div>
             </div>
           </div>
         </div>
