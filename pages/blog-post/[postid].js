@@ -1,12 +1,14 @@
 import { Layout } from "@/components/layout/Layout";
-import { getSession, withApiAuthRequired } from "@auth0/nextjs-auth0";
+import { getSession, withPageAuthRequired } from "@auth0/nextjs-auth0";
 import clientPromise from "@/lib/mongodb";
-import { withPageAuthRequired } from "@auth0/nextjs-auth0";
+import { ObjectId } from "mongodb";
 /*
 This is a dynamic root file aka: "[name].js" which allows to have
 any random string as a root for the blog post
 */
-export default function Post() {
+export default function Post(props) {
+  console.log(props);
+
   return (
     <div>
       <h1>Post Page</h1>
@@ -37,7 +39,22 @@ export const getServerSideProps = withPageAuthRequired({
     const user = await db.collection("users").findOne({
       auth0Id: userSession.user.sub,
     });
-    //Queering the post
-    const post = await db.collection("post").findOne({});
+    //Queering the post by ObjectId which is based on timestamp
+    //Dynamic route parameter passed from the URL. Represents the value extracted
+    //from the URL for the postId. For example, if the URL is "/posts/123", ctx.params.postId will be "123".
+    const post = await db.collection("posts").findOne({
+      _id: new ObjectId(ctx.params.postId),
+      //making sure post retrieved belongs to a specific user
+      userId: user._id,
+    });
+
+    return {
+      props: {
+        postContent: post.postContent,
+        title: post.title,
+        postDescription: post.postDescription,
+        keywords: post.keywords,
+      },
+    };
   },
 });
