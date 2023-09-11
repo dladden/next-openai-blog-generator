@@ -155,6 +155,7 @@ assistant -
     userId: userProfile._id,
     created: new Date(),
   });
+  console log("POST: ", post  )
 
   /*
     Response is parsed in JSON format grabbed out of choice 0 (openai sends 4)
