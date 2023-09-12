@@ -1,17 +1,19 @@
 import { Layout } from "@/components/layout/Layout";
 import { ScrollToTop } from "@/components/layout/ScrollToTop";
 import { withPageAuthRequired } from "@auth0/nextjs-auth0";
+import { useRouter } from "next/router";
 import { useState } from "react";
 
 export default function newPost(props) {
-  console.log(props);
+  // console.log(props);
+  const router = useRouter();
   //local states for the topic and keywords
   const [topic, setTopic] = useState("");
   console.log(topic);
   const [keywords, setKeywords] = useState("");
   console.log(keywords);
   //Saving the postContent into local state
-  const [postContent, setPostContent] = useState("");
+  // const [postContent, setPostContent] = useState("");
   //function which will query new api endpoint for the postGenerator
   const handleSubmit = async (e) => {
     //preventing default posting to itself
@@ -28,9 +30,13 @@ export default function newPost(props) {
     //Grabbing the response from the postGenerator.js
     const json = await response.json();
     console.log("Response: ", json);
+    //checking if the post id exists
+    if (json?.postId) {
+      //if yes navigate to the page
+      router.push(`/blog-post/${json.postId}`);
+    }
     //setting the string
-    setPostContent(json.post.postContent);
-    console.log(postContent);
+    // setPostContent(json.post.postContent);
   };
   return (
     <div>
@@ -62,7 +68,7 @@ export default function newPost(props) {
       </form>
       <div
         className="max-w-screen-sm p-10"
-        dangerouslySetInnerHTML={{ __html: postContent }}
+        // dangerouslySetInnerHTML={{ __html: postContent }}
       />
     </div>
   );
