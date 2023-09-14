@@ -49,12 +49,7 @@ export const getServerSideProps = withPageAuthRequired({
     });
 
     return {
-      props: {
-        postContent: post.postContent,
-        title: post.title,
-        postDescription: post.postDescription,
-        keywords: post.keywords,
-      },
+      props: {},
     };
   },
 });
