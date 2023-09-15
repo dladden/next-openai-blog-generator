@@ -10,8 +10,13 @@ export default function Post(props) {
   console.log(props);
 
   return (
-    <div>
-      <h1>Post Page</h1>
+    <div className="h-full">
+      <div className="max-w-screen-sm mx-auto">
+        <div className="text-sm font-bold mt-6 p-6 bg-stone-200 rounded-sm">
+          Post
+        </div>
+        <div dangerouslySetInnerHTML={{ __html: props.postContent || "" }} />
+      </div>
     </div>
   );
 }

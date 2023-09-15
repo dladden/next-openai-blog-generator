@@ -32,7 +32,7 @@ export default function newPost(props) {
     console.log("Response: ", json);
     //checking if the post id exists
     if (json?.postId) {
-      //if yes navigate to the page
+      //if yes redirect / navigate to the page
       router.push(`/blog-post/${json.postId}`);
     }
     //setting the string
