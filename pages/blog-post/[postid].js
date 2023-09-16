@@ -12,7 +12,7 @@ export default function Post(props) {
   return (
     <div className="h-full">
       <div className="max-w-screen-sm mx-auto">
-        <div className="text-sm font-bold mt-6 p-6 bg-stone-200 rounded-sm">
+        <div className="text-sm font-bold mt-6 p-6 bg-stone-200 rounded-md">
           Post
         </div>
         <div dangerouslySetInnerHTML={{ __html: props.postContent || "" }} />
