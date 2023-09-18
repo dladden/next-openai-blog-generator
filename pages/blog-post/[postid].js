@@ -2,6 +2,8 @@ import { Layout } from "@/components/layout/Layout";
 import { getSession, withPageAuthRequired } from "@auth0/nextjs-auth0";
 import clientPromise from "@/lib/mongodb";
 import { ObjectId } from "mongodb";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHashtag } from "@fortawesome/free-solid-svg-icons";
 /*
 This is a dynamic root file aka: "[name].js" which allows to have
 any random string as a root for the blog post
@@ -18,6 +20,17 @@ export default function Post(props) {
         <div className="p-4 my-2 border bg-neutral-200 rounded-md">
           <div className="text-blue-600 text-2xl font-bold">{props.title}</div>
           <div className="mt-2">{props.postDescription}</div>
+        </div>
+        <div className="text-sm font-bold mt-6 p-6 bg-neutral-200 rounded-md">
+          Keywords
+        </div>
+        <div className="flex flex-wrap pt-2 gap-1">
+          {props.keywords.split(",").map((keyword, i) => (
+            <div className="p-2 rounded-full bg-slate-600 text-white" key={i}>
+              <FontAwesomeIcon icon={faHashtag} />
+              {keyword}
+            </div>
+          ))}
         </div>
         <div className="text-sm font-bold mt-6 p-6 bg-neutral-200 rounded-md">
           Post

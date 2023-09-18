@@ -35,6 +35,45 @@
   h5 {
     @apply text-lg;
   }
+  p {
+    @apply: my-2;
+  }
+  /* margin for list tags */
+  ul,
+  ol {
+    @apply: my-2;
+  }
+  /* styling the list */
+  ul {
+    list-style-type: disc;
+  }
+  ol {
+    list-style-type: decimal;
+  }
+  li {
+    @apply m-2;
+  }
+  p > code,
+  li > code,
+  dd > code,
+  td > code {
+    background: #ffeff0;
+    word-wrap: break-word;
+    box-decoration-break: clone;
+    padding: 0.1rem 0.3rem 0.2rem;
+    border-radius: 0.2rem;
+  }
+  pre > code {
+    background: red;
+    display: block;
+    background: none;
+    white-space: pre;
+    -webkit-overflow-scrolling: touch;
+    overflow-x: scroll;
+    max-width: 100%;
+    min-width: 100px;
+    padding: 0;
+  }
 }
 /* global styling which is accessed through layer and can be OVERWRITTEN!! */
 @layer components {
