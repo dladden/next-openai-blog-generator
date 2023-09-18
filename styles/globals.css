@@ -10,6 +10,7 @@
   background-image: url("../public/textflow-cover-02.svg");
   /* Additional background properties as needed */
 }
+/* Targeting Base layer designs */
 @layer base {
   h1,
   h2,
@@ -17,7 +18,7 @@
   h4,
   h5,
   h6 {
-    @apply font-heading my-6;
+    @apply font-heading my-6 font-bold;
   }
   h1 {
     @apply text-4xl;
