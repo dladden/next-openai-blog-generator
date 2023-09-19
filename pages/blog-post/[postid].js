@@ -1,12 +1,12 @@
-import { Layout } from "@/components/layout/Layout";
-import { getSession, withPageAuthRequired } from "@auth0/nextjs-auth0";
-import clientPromise from "@/lib/mongodb";
-import { ObjectId } from "mongodb";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHashtag } from "@fortawesome/free-solid-svg-icons";
+import { Layout } from '@/components/layout/Layout';
+import { getSession, withPageAuthRequired } from '@auth0/nextjs-auth0';
+import clientPromise from '@/lib/mongodb';
+import { ObjectId } from 'mongodb';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHashtag } from '@fortawesome/free-solid-svg-icons';
 /*
 This is a dynamic root file aka: "[name].js" which allows to have
-any random string as a root for the blog post
+any random string as a root for the blog post 
 */
 export default function Post(props) {
   console.log(props);
@@ -25,7 +25,7 @@ export default function Post(props) {
           Keywords
         </div>
         <div className="flex flex-wrap pt-2 gap-1">
-          {props.keywords.split(",").map((keyword, i) => (
+          {props.keywords.split(',').map((keyword, i) => (
             <div className="p-2 rounded-full bg-slate-600 text-white" key={i}>
               <FontAwesomeIcon icon={faHashtag} />
               {keyword}
@@ -35,7 +35,7 @@ export default function Post(props) {
         <div className="text-sm font-bold mt-6 p-6 bg-neutral-200 rounded-md">
           Post
         </div>
-        <div dangerouslySetInnerHTML={{ __html: props.postContent || "" }} />
+        <div dangerouslySetInnerHTML={{ __html: props.postContent || '' }} />
       </div>
     </div>
   );
@@ -59,15 +59,15 @@ export const getServerSideProps = withPageAuthRequired({
     const userSession = await getSession(ctx.req, ctx.res);
     const client = await clientPromise;
     //connecting to the database
-    const db = client.db("textFlow");
+    const db = client.db('textFlow');
     //Grabbing the post by id
-    const user = await db.collection("users").findOne({
+    const user = await db.collection('users').findOne({
       auth0Id: userSession.user.sub,
     });
     //Queering the post by ObjectId which is based on timestamp
     //Dynamic route parameter passed from the URL. Represents the value extracted
     //from the URL for the postId. For example, if the URL is "/posts/123", ctx.params.postId will be "123".
-    const post = await db.collection("posts").findOne({
+    const post = await db.collection('posts').findOne({
       _id: new ObjectId(ctx.params.postId),
       //making sure post retrieved belongs to a specific user
       userId: user._id,

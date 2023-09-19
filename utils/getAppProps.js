@@ -1,5 +1,5 @@
-import clientPromise from "@/lib/mongodb";
-import { getSession } from "@auth0/nextjs-auth0";
+import clientPromise from '@/lib/mongodb';
+import { getSession } from '@auth0/nextjs-auth0';
 
 /**
  * In for every page that renders <AppLayout> getAppProps returns server side props
@@ -9,8 +9,8 @@ export const getAppProps = async (ctx) => {
   const userSession = await getSession(ctx.req, ctx.res);
   //connecting to mongodb and finding the user by sub
   const client = await clientPromise;
-  const db = client.db("textFlow");
-  const user = await db.collection("users").findOne({
+  const db = client.db('textFlow');
+  const user = await db.collection('users').findOne({
     auth0Id: userSession.user.sub,
   });
   //if the user does not exist return this:

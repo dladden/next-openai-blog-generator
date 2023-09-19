@@ -1,15 +1,15 @@
-import React from "react";
-import { ScrollToTop } from "@/components/layout/ScrollToTop";
-import Navbar from "./Navbar";
-import { useState } from "react";
-import { useUser } from "@auth0/nextjs-auth0/client";
-import Image from "next/image";
-import Link from "next/link";
+import React from 'react';
+import { ScrollToTop } from '@/components/layout/ScrollToTop';
+import Navbar from './Navbar';
+import { useState } from 'react';
+import { useUser } from '@auth0/nextjs-auth0/client';
+import Image from 'next/image';
+import Link from 'next/link';
 import {
   PlusIcon,
   ChevronLeftIcon,
   WalletIcon,
-} from "@heroicons/react/20/solid";
+} from '@heroicons/react/20/solid';
 /*
 Layout will rander the layout and will take on value from children
  */
@@ -32,23 +32,23 @@ export const Layout = ({ props, children }) => {
       <div className="flex h-full max-h-screen overflow-y-auto  bg-white">
         <div
           className={`flex ${
-            open ? "w-72" : "w-20"
+            open ? 'w-72' : 'w-20'
           }  duration-200 h-screen flex-col text-white overflow-hidden`}
         >
           {/*---------------- NEW-POST-BUTTON ----------------*/}
           <div
             className={`bg-neutral-200 space-y-4 px-4 mt-[64px] ${
-              open && "inline-flex space-y-0"
+              open && 'inline-flex space-y-0'
             } duration-200 p-4 justify-between`}
           >
             <Link href="blog-post/new" className=" btn flex px-2">
               <PlusIcon className="flex-none w-7 h-7" />
-              <span className={`${!open && "scale-0"} px-2`}>New Post</span>
+              <span className={`${!open && 'scale-0'} px-2`}>New Post</span>
             </Link>
             <ChevronLeftIcon
               onClick={() => setOpen(!open)}
               className={` w-12 bg-transparent hover:bg-neutral-900 text-neutral-900 font-semibold hover:text-white border border-neutral-800 hover:border-transparent rounded text-center flex items-center justify-start cursor-pointer ${
-                !open && "rotate-180"
+                !open && 'rotate-180'
               }`}
             />
           </div>
@@ -61,7 +61,7 @@ export const Layout = ({ props, children }) => {
           <div className="bg-neutral-200">
             <div
               className={`${
-                open && "flex"
+                open && 'flex'
               }  gap-2 border-t border-t-black/60 h-[8rem] px-2`}
             >
               <div className="">
@@ -77,7 +77,7 @@ export const Layout = ({ props, children }) => {
                       />
                     </div>
                     <div>
-                      <div className={`font-bold ${!open && "scale-0"}`}>
+                      <div className={`font-bold ${!open && 'scale-0'}`}>
                         {user.email}
                       </div>
                       <div className="">
@@ -92,7 +92,7 @@ export const Layout = ({ props, children }) => {
               {/*---------------- CREDITS ----------------*/}
               <div
                 className={`absolute mb-4 left-4 w-auto  ${
-                  !open && "w-[3rem]"
+                  !open && 'w-[3rem]'
                 } duration-200`}
               >
                 <Link
@@ -100,10 +100,10 @@ export const Layout = ({ props, children }) => {
                   href="/credit-purchase"
                 >
                   <WalletIcon className="flex-none w-5 h-6" />
-                  <span className={`${!open && "scale-0"} flex-1`}>
+                  <span className={`${!open && 'scale-0'} flex-1`}>
                     Credits:
                   </span>
-                  <span className={`${!open && "scale-0"} flex-1`}>20</span>
+                  <span className={`${!open && 'scale-0'} flex-1`}>20</span>
                 </Link>
               </div>
             </div>
