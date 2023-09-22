@@ -20,5 +20,18 @@ export const getAppProps = async (ctx) => {
       posts: [],
     };
   } //end if user does not exist
-  //if user does exist
+  //if user does exist find all the post
+  const posts = await db
+    .collection('posts')
+    .find({
+      userId: user._id,
+    })
+    .toArray();
+  //
+  return {
+    availableCredits: user.availableCredits,
+    posts: posts.map((created, _id, userId, ...rest) => {
+      id;
+    }),
+  };
 }; //end async
