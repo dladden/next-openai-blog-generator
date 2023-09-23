@@ -3,6 +3,8 @@ import { getSession } from '@auth0/nextjs-auth0';
 
 /**
  * In for every page that renders <AppLayout> getAppProps returns server side props
+ * It provides all the post for the signed in user then sends them to be displayed
+ * in the sidebar
  */
 export const getAppProps = async (ctx) => {
   //Grabbing users available tokens and posts.
@@ -27,11 +29,13 @@ export const getAppProps = async (ctx) => {
       userId: user._id,
     })
     .toArray();
-  //
+  //returning new object for each post
   return {
     availableCredits: user.availableCredits,
-    posts: posts.map((created, _id, userId, ...rest) => {
-      id;
-    }),
+    posts: posts.map((created, _id, userId, ...rest) => ({
+      id: _id.toString(),
+      created: created.toString(),
+      ...rest,
+    })),
   };
 }; //end async
