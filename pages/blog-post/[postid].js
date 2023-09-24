@@ -4,6 +4,7 @@ import clientPromise from '@/lib/mongodb';
 import { ObjectId } from 'mongodb';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHashtag } from '@fortawesome/free-solid-svg-icons';
+import { getAppProps } from '@/utils/getAppProps';
 /*
 This is a dynamic root file aka: "[name].js" which allows to have
 any random string as a root for the blog post 
@@ -56,6 +57,8 @@ Post.getLayoutFunc = function getLayout(page, pageProps) {
  */
 export const getServerSideProps = withPageAuthRequired({
   async getServerSideProps(ctx) {
+    //importing props from the getAppProps
+    const props = await getAppProps(ctx);
     const userSession = await getSession(ctx.req, ctx.res);
     const client = await clientPromise;
     //connecting to the database
@@ -79,6 +82,7 @@ export const getServerSideProps = withPageAuthRequired({
         title: post.title,
         postDescription: post.postDescription,
         keywords: post.keywords,
+        ...props,
       },
     };
   },

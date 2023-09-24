@@ -1,11 +1,12 @@
-import { withPageAuthRequired } from "@auth0/nextjs-auth0";
-import { Layout } from "@/components/layout";
+import { withPageAuthRequired } from '@auth0/nextjs-auth0';
+import { Layout } from '@/components/layout';
+import { getAppProps } from '@/utils/getAppProps';
 
 export default function creditPurchase() {
   //hitting the endpoint of currently signed in user
   const handleClick = async () => {
     await fetch(`/api/addCredits`, {
-      method: "POST",
+      method: 'POST',
     });
   };
 
@@ -13,8 +14,8 @@ export default function creditPurchase() {
     <div>
       <h1> Credit Purchase</h1>
       <button className="btn px-4 py-2" onClick={handleClick}>
-        {" "}
-        add credits{" "}
+        {' '}
+        add credits{' '}
       </button>
     </div>
   );
@@ -30,9 +31,15 @@ creditPurchase.getLayoutFunc = function getLayout(page, pageProps) {
   return <Layout {...pageProps}>{page}</Layout>;
 };
 
-//this special function runs server-side when requested
-export const getServerSideProps = withPageAuthRequired(() => {
-  return {
-    props: {},
-  };
+/**
+ * this special function runs server-side when requested
+ * Grabbing the AppProps that pass each users posts with context "ctx"
+ */
+export const getServerSideProps = withPageAuthRequired({
+  async getServerSideProps(ctx) {
+    const props = await getAppProps(ctx);
+    return {
+      props,
+    };
+  },
 });

@@ -29,10 +29,10 @@ export const getAppProps = async (ctx) => {
       userId: user._id,
     })
     .toArray();
-  //returning new object for each post
+  //returning new object for each post using selective destructuring
   return {
     availableCredits: user.availableCredits,
-    posts: posts.map((created, _id, userId, ...rest) => ({
+    posts: posts.map(({ created, _id, userId, ...rest }) => ({
       id: _id.toString(),
       created: created.toString(),
       ...rest,

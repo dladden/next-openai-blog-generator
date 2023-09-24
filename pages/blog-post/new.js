@@ -1,16 +1,17 @@
-import { Layout } from "@/components/layout/Layout";
-import { ScrollToTop } from "@/components/layout/ScrollToTop";
-import { withPageAuthRequired } from "@auth0/nextjs-auth0";
-import { useRouter } from "next/router";
-import { useState } from "react";
+import { Layout } from '@/components/layout/Layout';
+import { ScrollToTop } from '@/components/layout/ScrollToTop';
+import { withPageAuthRequired } from '@auth0/nextjs-auth0';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
+import { getAppProps } from '@/utils/getAppProps';
 
 export default function newPost(props) {
   // console.log(props);
   const router = useRouter();
   //local states for the topic and keywords
-  const [topic, setTopic] = useState("");
+  const [topic, setTopic] = useState('');
   console.log(topic);
-  const [keywords, setKeywords] = useState("");
+  const [keywords, setKeywords] = useState('');
   console.log(keywords);
   //Saving the postContent into local state
   // const [postContent, setPostContent] = useState("");
@@ -20,16 +21,16 @@ export default function newPost(props) {
     e.preventDefault();
     //async which sends a promise and passes data through req in postGenerator in JSON format
     const response = await fetch(`/api/postGenerator`, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "content-type": "application/json",
+        'content-type': 'application/json',
       },
       body: JSON.stringify({ topic, keywords }),
     });
 
     //Grabbing the response from the postGenerator.js
     const json = await response.json();
-    console.log("Response: ", json);
+    console.log('Response: ', json);
     //checking if the post id exists
     if (json?.postId) {
       //if yes redirect / navigate to the page
@@ -84,9 +85,14 @@ newPost.getLayoutFunc = function getLayout(page, pageProps) {
   return <Layout {...pageProps}>{page}</Layout>;
 };
 
-//this special function runs server-side when requested
-export const getServerSideProps = withPageAuthRequired(() => {
-  return {
-    props: {},
-  };
+/**
+ * this special function runs server-side when requested
+ */
+export const getServerSideProps = withPageAuthRequired({
+  async getServerSideProps(ctx) {
+    const props = await getAppProps(ctx);
+    return {
+      props,
+    };
+  },
 });

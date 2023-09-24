@@ -13,11 +13,12 @@ import {
 /*
 Layout will rander the layout and will take on value from children
  */
-export const Layout = ({ props, children }) => {
+export const Layout = ({ children, ...rest }) => {
   const { user } = useUser();
   const [open, setOpen] = useState(true);
   // const [showSidebar, setShowSidebar] = useState(false);
   // console.log(showSidebar);
+  console.log('APP PROPS: ', rest);
   return (
     /*
     SIDEBAR: Using h-screen-"height of the screen" to set 
