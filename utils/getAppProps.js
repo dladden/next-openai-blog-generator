@@ -22,11 +22,14 @@ export const getAppProps = async (ctx) => {
       posts: [],
     };
   } //end if user does not exist
-  //if user does exist find all the post
+  //if user does exist query all the post (sort by new to old)
   const posts = await db
     .collection('posts')
     .find({
       userId: user._id,
+    })
+    .sort({
+      created: -1,
     })
     .toArray();
   //returning new object for each post using selective destructuring
@@ -37,6 +40,7 @@ export const getAppProps = async (ctx) => {
       created: created.toString(),
       ...rest,
     })),
+    //creating postId access to render the clicked post by comparison in Layout
     postId: ctx.params?.postId || null,
   };
 }; //end async
