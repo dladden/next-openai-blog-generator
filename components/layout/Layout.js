@@ -13,12 +13,12 @@ import {
 /*
 Layout will rander the layout and will take on value from children
  */
-export const Layout = ({ children, ...rest }) => {
+export const Layout = ({ children, availableCredits, posts }) => {
   const { user } = useUser();
   const [open, setOpen] = useState(true);
   // const [showSidebar, setShowSidebar] = useState(false);
   // console.log(showSidebar);
-  console.log('APP PROPS: ', rest);
+  // console.log('APP PROPS: ', rest);
   return (
     /*
     SIDEBAR: Using h-screen-"height of the screen" to set 
@@ -55,7 +55,18 @@ export const Layout = ({ children, ...rest }) => {
           </div>
           {/*---------------- POST LIST ----------------*/}
           <div className="relative flex-1 overflow-auto h-72 bg-[radial-gradient(circle_at_bottom_left,_var(--tw-gradient-stops))] from-neutral-200 via-neutral-400 to-neutral-300">
-            <div>post list post list</div>
+            <div>
+              {posts.map((post) => (
+                <Link
+                  key={post._id}
+                  href={`/blog-post/${post._id}`}
+                  className="block text-ellipsis overflow-hidden whitespace-nowrap my-1 px-2 cursor-pointer rounded-md bg-neutral-400"
+                >
+                  {console.log('postID:', post._id)}
+                  {post.topic}
+                </Link>
+              ))}
+            </div>
           </div>
 
           {/*---------------- USER & LOGOUT ----------------*/}
@@ -104,7 +115,9 @@ export const Layout = ({ children, ...rest }) => {
                   <span className={`${!open && 'scale-0'} flex-1`}>
                     Credits:
                   </span>
-                  <span className={`${!open && 'scale-0'} flex-1`}>20</span>
+                  <span className={`${!open && 'scale-0'} flex-1`}>
+                    {availableCredits}
+                  </span>
                 </Link>
               </div>
             </div>

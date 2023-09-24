@@ -33,9 +33,10 @@ export const getAppProps = async (ctx) => {
   return {
     availableCredits: user.availableCredits,
     posts: posts.map(({ created, _id, userId, ...rest }) => ({
-      id: _id.toString(),
+      _id: _id.toString(),
       created: created.toString(),
       ...rest,
     })),
+    postId: ctx.params?.postId || null,
   };
 }; //end async

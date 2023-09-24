@@ -78,6 +78,7 @@ export const getServerSideProps = withPageAuthRequired({
 
     return {
       props: {
+        id: ctx.params.postId,
         postContent: post.postContent,
         title: post.title,
         postDescription: post.postDescription,
