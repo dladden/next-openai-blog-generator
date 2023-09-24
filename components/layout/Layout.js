@@ -9,6 +9,7 @@ import {
   PlusIcon,
   ChevronLeftIcon,
   WalletIcon,
+  ArrowRightOnRectangleIcon,
 } from '@heroicons/react/20/solid';
 /*
 Layout will rander the layout and will take on value from children
@@ -60,7 +61,7 @@ export const Layout = ({ children, availableCredits, posts, postId }) => {
                 <Link
                   key={post._id}
                   href={`/blog-post/${post._id}`}
-                  className={` border border-white/0 block text-ellipsis overflow-hidden whitespace-nowrap py-2 my-2 px-2 cursor-pointer rounded-md bg-neutral-400 ${
+                  className={` border border-white/0 block text-ellipsis hover:bg-neutral-900 overflow-hidden whitespace-nowrap py-2 my-2 px-2 cursor-pointer rounded-md bg-neutral-400 ${
                     postId === post._id
                       ? ' bg-neutral-500 border-neutral-700'
                       : ''
@@ -80,24 +81,23 @@ export const Layout = ({ children, availableCredits, posts, postId }) => {
                 open && 'flex'
               }  gap-2 border-t border-t-black/60 h-[8rem] px-2`}
             >
-              <div className="">
+              <div className="flex items-center">
                 {!!user ? (
                   <>
                     <div className="min-w=[50px]">
                       <Image
                         src={user.picture}
                         alt={user.name}
-                        height={50}
-                        width={50}
+                        height={40}
+                        width={40}
                         className="rounded-full"
                       />
                     </div>
                     <div>
-                      <div className={`font-bold ${!open && 'scale-0'}`}>
-                        {user.email}
-                      </div>
                       <div className="">
-                        <Link href="/api/auth/logout">logout</Link>
+                        <Link href="/api/auth/logout">
+                          <ArrowRightOnRectangleIcon className="flex-none w-10 h-10" />
+                        </Link>
                       </div>
                     </div>
                   </>

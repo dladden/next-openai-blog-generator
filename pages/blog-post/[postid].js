@@ -30,9 +30,7 @@ export default function Post(props) {
             </div>
           ))}
         </div>
-        <div className="text-sm font-bold mt-6 p-6 bg-neutral-200 rounded-md">
-          Post
-        </div>
+        <div className="text-sm font-bold mt-6 p-1">Post:</div>
         <div dangerouslySetInnerHTML={{ __html: props.postContent || '' }} />
       </div>
     </div>
