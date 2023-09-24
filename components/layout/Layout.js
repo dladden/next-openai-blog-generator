@@ -60,12 +60,14 @@ export const Layout = ({ children, availableCredits, posts, postId }) => {
                 <Link
                   key={post._id}
                   href={`/blog-post/${post._id}`}
-                  className={` border border-white/0 block text-ellipsis overflow-hidden whitespace-nowrap py-2 my-2 px-2 cursor-pointer rounded-md bg-neutral-700 ${
-                    postId === post._id ? 'bg-neutral-400 border-white' : ''
+                  className={` border border-white/0 block text-ellipsis overflow-hidden whitespace-nowrap py-2 my-2 px-2 cursor-pointer rounded-md bg-neutral-400 ${
+                    postId === post._id
+                      ? ' bg-neutral-500 border-neutral-700'
+                      : ''
                   }`}
                 >
                   {console.log('postID:', post._id)}
-                  {post.topic}
+                  {post.topic !== null ? post.topic : 'Post'}
                 </Link>
               ))}
             </div>

@@ -15,20 +15,17 @@ export default function Post(props) {
   return (
     <div className="h-full">
       <div className="max-w-screen-sm mx-auto">
-        <div className="text-sm font-bold mt-6 p-6 bg-neutral-200 rounded-md">
-          SEO Tittle & Meta Description
+        <div className="text-sm font-bold mt-6 p-1">
+          SEO Tittle & Meta Description:
         </div>
         <div className="p-4 my-2 border bg-neutral-200 rounded-md">
           <div className="text-blue-600 text-2xl font-bold">{props.title}</div>
           <div className="mt-2">{props.postDescription}</div>
         </div>
-        <div className="text-sm font-bold mt-6 p-6 bg-neutral-200 rounded-md">
-          Keywords
-        </div>
+        <div className="text-sm font-bold mt-6 p-1">Keywords:</div>
         <div className="flex flex-wrap pt-2 gap-1">
           {props.keywords.split(',').map((keyword, i) => (
-            <div className="p-2 rounded-full bg-slate-600 text-white" key={i}>
-              <FontAwesomeIcon icon={faHashtag} />
+            <div className="p-2 rounded-full bg-neutral-400 text-white" key={i}>
               {keyword}
             </div>
           ))}
