@@ -77,18 +77,16 @@ export const Layout = ({ children, availableCredits, posts, postId }) => {
           </div>
 
           {/*---------------- USER, LOGOUT/LOGIN, WALLET, CREDITS ----------------*/}
-          <div className="flex bg-neutral-200 border-t border-t-black/60 h-[4rem] justify-between px-2">
+          <div className="flex bg-neutral-200 border-t border-t-black/60 h-[4.5rem] justify-between px-4">
             {/* USER */}
-            <div className="flex items-center flex-grow">
-              <div className="min-w-[50px]">
-                <Image
-                  src={user.picture}
-                  alt={user.name}
-                  height={40}
-                  width={40}
-                  className="rounded-xl"
-                />
-              </div>
+            <div className="flex min-w-[50px] items-center flex-grow">
+              <Image
+                src={user.picture}
+                alt={user.name}
+                height={40}
+                width={40}
+                className="rounded-xl"
+              />
             </div>
             {/* LOGIN/LOGOUT */}
             <div className="flex items-center flex-grow">
