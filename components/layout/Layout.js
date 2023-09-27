@@ -77,53 +77,57 @@ export const Layout = ({ children, availableCredits, posts, postId }) => {
           </div>
 
           {/*---------------- USER, LOGOUT/LOGIN, WALLET, CREDITS ----------------*/}
-          <div className="bg-neutral-200">
-            <div
-              className={`${
-                open && 'flex'
-              }  border-t border-t-black/60 h-[4rem] justify-between px-2`}
-            >
-              <div className="flex items-center ">
-                {!!user ? (
-                  <>
-                    <div className="min-w=[50px]">
-                      <Image
-                        src={user.picture}
-                        alt={user.name}
-                        height={40}
-                        width={40}
-                        className="rounded-xl"
-                      />
-                    </div>
-                    <div>
-                      <div className="">
-                        <Link href="/api/auth/logout">
-                          <ArrowRightOnRectangleIcon className="rounded-xl bg-transparent hover:bg-neutral-900 text-neutral-900 font-semibold hover:text-white border  hover:border-transparent text-center flex items-center py-1 px-1 space-x-6 flex-none w-10 h-10" />
-                        </Link>
-                      </div>
-                    </div>
-                  </>
-                ) : (
-                  <Link href="/api/auth/login">
-                    <ArrowLeftOnRectangleIcon className="flex-none w-10 h-10" />
-                  </Link>
-                )}
-                <Link
-                  className="rounded-xl bg-transparent hover:bg-neutral-900 text-neutral-900 font-semibold hover:text-white border  hover:border-transparent text-center flex items-center py-2 px-2 space-x-6"
-                  href="/credit-purchase"
-                >
-                  <WalletIcon className="flex-none w-6 h-6" />
-                </Link>
-                <Link
-                  className="rounded-xl bg-transparent hover:bg-neutral-900 text-neutral-900 font-semibold hover:text-white border hover:border-transparent text-center flex items-center py-2 px-2"
-                  href="/credit-purchase"
-                >
-                  <CurrencyDollarIcon className="flex-none w-5 h-6" />
-                  <span className={`${!open && 'scale-0'} flex-1`}>
-                    {availableCredits}
-                  </span>
-                </Link>
+          <div className="flex bg-neutral-200 border-t border-t-black/60 h-[4rem] justify-between px-2">
+            {/* USER */}
+            <div className="flex items-center flex-grow">
+              <div className="min-w-[50px]">
+                <Image
+                  src={user.picture}
+                  alt={user.name}
+                  height={40}
+                  width={40}
+                  className="rounded-xl"
+                />
               </div>
+            </div>
+            {/* LOGIN/LOGOUT */}
+            <div className="flex items-center flex-grow">
+              {!!user ? (
+                <>
+                  <div>
+                    <div className="">
+                      <Link href="/api/auth/logout">
+                        <ArrowRightOnRectangleIcon className="rounded-xl bg-transparent hover:bg-neutral-900 text-neutral-900 font-semibold hover:text-white border hover:border-transparent text-center flex items-center py-1 px-1 space-x-6 flex-none w-10 h-10" />
+                      </Link>
+                    </div>
+                  </div>
+                </>
+              ) : (
+                <Link href="/api/auth/login">
+                  <ArrowLeftOnRectangleIcon className="flex-none w-10 h-10" />
+                </Link>
+              )}
+            </div>
+            {/* WALLET */}
+            <div className="flex items-center flex-grow">
+              <Link
+                className="rounded-xl bg-transparent hover:bg-neutral-900 text-neutral-900 font-semibold hover:text-white border hover:border-transparent text-center flex items-center py-2 px-2 space-x-6"
+                href="/credit-purchase"
+              >
+                <WalletIcon className="flex-none w-6 h-6" />
+              </Link>
+            </div>
+            {/* CREDITS */}
+            <div className="flex items-center flex-grow">
+              <Link
+                className="rounded-xl bg-transparent hover:bg-neutral-900 text-neutral-900 font-semibold hover:text-white border hover:border-transparent text-center flex items-center py-2 px-2"
+                href="/credit-purchase"
+              >
+                <CurrencyDollarIcon className="flex-none w-6 h-6" />
+                <span className={`${!open && 'scale-0'} flex-1`}>
+                  {availableCredits}
+                </span>
+              </Link>
             </div>
           </div>
         </div>
