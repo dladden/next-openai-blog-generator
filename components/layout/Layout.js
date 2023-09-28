@@ -22,6 +22,7 @@ export const Layout = ({ children, availableCredits, posts, postId }) => {
   // const [showSidebar, setShowSidebar] = useState(false);
   // console.log(showSidebar);
   // console.log('APP PROPS: ', rest);
+  console.log('USER:', user);
   return (
     /*
     SIDEBAR: Using h-screen-"height of the screen" to set 
@@ -81,8 +82,8 @@ export const Layout = ({ children, availableCredits, posts, postId }) => {
             {/* USER */}
             <div className="flex min-w-[50px] items-center flex-grow">
               <Image
-                src={user.picture}
-                alt={user.name}
+                src={user?.picture}
+                alt={user?.name}
                 height={40}
                 width={40}
                 className="rounded-xl"

@@ -1,5 +1,6 @@
 import { getSession } from '@auth0/nextjs-auth0';
 import clientPromise from '@/lib/mongodb';
+import stripeInit from 'stripe';
 
 /**
  * MongoDB Connection done here:
@@ -10,9 +11,31 @@ import clientPromise from '@/lib/mongodb';
  *
  * addCRedits is used for connection to mongodb todo upsert (insert + update)
  */
+const stripe = stripeInit(process.env.STRIPE_SECRET_KEY);
+
 export default async function handler(req, res) {
   //destructuring the user
   const { user } = await getSession(req, res);
+
+  //lineItems is the session that takes on the products in this case only one
+  const lineItems = [
+    {
+      price: process.env.STRIPE_CREDITS_PRICE_ID,
+      quantity: 1,
+    },
+  ];
+  //Specifying the protocol for the project http in production and https in prod
+  const protocol =
+    process.env.NODE_ENV === 'development' ? 'http://' : 'https://';
+  //determining the host
+  const host = req.headers.host;
+
+  //getting the stripe product & stripe checkout session where
+  const checkoutSession = await stripe.checkout.sessions.create({
+    line_items: lineItems,
+    mode: 'payment',
+    success_url: `${protocol}${host}/success`,
+  });
 
   console.log('user: ', user);
   //connecting to mongodb
