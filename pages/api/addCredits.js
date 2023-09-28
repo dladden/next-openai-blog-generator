@@ -60,6 +60,6 @@ export default async function handler(req, res) {
       upsert: true,
     }
   );
-
-  res.status(200).json({ name: 'John Doe' });
+  //return data
+  res.status(200).json({ session: checkoutSession });
 }
