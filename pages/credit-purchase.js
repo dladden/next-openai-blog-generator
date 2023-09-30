@@ -10,6 +10,8 @@ export default function creditPurchase() {
     });
     const json = await result.json();
     console.log('result: ', json);
+    //directing to the stripe checkout url in the from fetched result
+    window.location.href = json.session.url;
   };
 
   return (

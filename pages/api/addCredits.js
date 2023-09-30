@@ -24,13 +24,13 @@ export default async function handler(req, res) {
       quantity: 1,
     },
   ];
-  //Specifying the protocol for the project http in production and https in prod
+  //Specifying absolute url the protocol for the project http in production and https in prod
   const protocol =
     process.env.NODE_ENV === 'development' ? 'http://' : 'https://';
-  //determining the host
+  //determining the host from request headers
   const host = req.headers.host;
 
-  //getting the stripe product & stripe checkout session where
+  //getting the stripe product & stripe checkout session here
   const checkoutSession = await stripe.checkout.sessions.create({
     line_items: lineItems,
     mode: 'payment',
