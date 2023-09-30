@@ -34,7 +34,7 @@ export default async function handler(req, res) {
   const checkoutSession = await stripe.checkout.sessions.create({
     line_items: lineItems,
     mode: 'payment',
-    success_url: `${protocol}${host}/success`,
+    success_url: `${protocol}${host}/order-confirmation`,
   });
 
   console.log('user: ', user);

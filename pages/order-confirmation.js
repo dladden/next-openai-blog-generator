@@ -2,23 +2,10 @@ import { withPageAuthRequired } from '@auth0/nextjs-auth0';
 import { Layout } from '@/components/layout';
 import { getAppProps } from '@/utils/getAppProps';
 
-export default function creditPurchase() {
-  //hitting the endpoint of currently signed in user
-  const handleClick = async () => {
-    const result = await fetch(`/api/addCredits`, {
-      method: 'POST',
-    });
-    const json = await result.json();
-    console.log('result: ', json);
-  };
-
+export default function orderConfirmation() {
   return (
     <div>
-      <h1> Credit Purchase</h1>
-      <button className="btn px-4 py-2" onClick={handleClick}>
-        {' '}
-        add credits{' '}
-      </button>
+      <h1>Thank You For The Purchase!</h1>
     </div>
   );
 }
@@ -29,7 +16,7 @@ with the Layout component and provide the pageProps to it.
 This allows you to define a consistent layout structure that surrounds 
 the content of your page.
 */
-creditPurchase.getLayoutFunc = function getLayout(page, pageProps) {
+orderConfirmation.getLayoutFunc = function getLayout(page, pageProps) {
   return <Layout {...pageProps}>{page}</Layout>;
 };
 
