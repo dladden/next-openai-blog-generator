@@ -59,11 +59,14 @@ const handler = async (req, res) => {
         //connecting to mongodb
         const client = await clientPromise;
         const db = client.db('textFlow');
-        //upsert - does both check and update user. Checking if
-        //sub exists
+        //pulling metadata from checkoutSession in addCredits.js
+        const paymentIntent = event.data.object;
+        const auth0Id = paymentIntent.metadata.sub;
+
+        //UPSERT - does both check and update user. Checking if sub exists
         const userProfile = db.collection('users').updateOne(
           {
-            auth0Id: user.sub, //filter or identifier
+            auth0Id, //filter or identifier
           },
           {
             //increment
@@ -71,7 +74,7 @@ const handler = async (req, res) => {
               availableCredits: 10, //if it does exist create increment the count by 10
             },
             $setOnInsert: {
-              auth0Id: user.sub, //insert to the document the count
+              auth0Id, //insert to the document the count
             },
           },
           {
@@ -82,3 +85,5 @@ const handler = async (req, res) => {
     }
   }
 };
+//Exporting the handler within the cors functions
+export default cors(handler);

@@ -39,6 +39,7 @@ export default async function handler(req, res) {
       metadata: {
         sub: user.sub,
       },
+      //metadata object which is needed
       metadata: {
         sub: user.sub,
       },
