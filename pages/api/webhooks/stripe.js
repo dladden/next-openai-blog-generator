@@ -39,13 +39,23 @@ export const config = {
     bodyParser: false,
   },
 };
-//Handler for this endpoint which checks if the data posted comes from Stripe
+//Handler for this endpoint which checks if the data posted comes from Stripe with in event handler
 const handler = async (req, res) => {
   if (req.method === 'POST') {
-    const event = verifyStripe({
-      req,
-      stripe,
-      endpointSecret,
-    });
+    let event;
+    try {
+      event = verifyStripe({
+        req,
+        stripe,
+        endpointSecret,
+      });
+    } catch (error) {
+      console.log('ERROR', error);
+    }
+    //listening for the successful payment event
+    switch (event.type) {
+      case 'payment_intent.succeeded': {
+      }
+    }
   }
 };
