@@ -86,7 +86,7 @@ export const Layout = ({ children, availableCredits, posts, postId }) => {
                 alt={user?.name}
                 height={40}
                 width={40}
-                className="rounded-xl"
+                className="rounded-xl transition duration-300 ease-in-out transform hover:scale-110 active:bg-black cursor-pointer"
               />
             </div>
             {/* LOGIN/LOGOUT */}

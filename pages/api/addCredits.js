@@ -1,5 +1,4 @@
 import { getSession } from '@auth0/nextjs-auth0';
-import clientPromise from '@/lib/mongodb';
 import stripeInit from 'stripe';
 
 /**
@@ -31,35 +30,23 @@ export default async function handler(req, res) {
   const host = req.headers.host;
 
   //getting the stripe product & stripe checkout session here
+  //Additionally passing user sub as metadata to know who makes the purchase
   const checkoutSession = await stripe.checkout.sessions.create({
     line_items: lineItems,
     mode: 'payment',
     success_url: `${protocol}${host}/order-confirmation`,
+    payment_intent_data: {
+      metadata: {
+        sub: user.sub,
+      },
+      metadata: {
+        sub: user.sub,
+      },
+    },
   });
 
   console.log('user: ', user);
-  //connecting to mongodb
-  const client = await clientPromise;
-  const db = client.db('textFlow');
-  //upsert - does both check and update user. Checking if
-  //sub exists
-  const userProfile = db.collection('users').updateOne(
-    {
-      auth0Id: user.sub, //filter or identifier
-    },
-    {
-      //increment
-      $inc: {
-        availableCredits: 10, //if it does exist create increment the count by 10
-      },
-      $setOnInsert: {
-        auth0Id: user.sub, //insert to the document the count
-      },
-    },
-    {
-      upsert: true,
-    }
-  );
+
   //return data
   res.status(200).json({ session: checkoutSession });
 }

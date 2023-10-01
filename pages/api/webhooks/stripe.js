@@ -1,5 +1,6 @@
 import micro_cors from 'micro-cors';
 import StripeInit from 'stripe';
+import clientPromise from '@/lib/mongodb';
 /**
  * Stripe.js is used for webhooks (HTTP callbacks or notifications that occur when certain events or triggers)
  * Endpoints used to reach external entity "Stripe"
@@ -55,6 +56,28 @@ const handler = async (req, res) => {
     //listening for the successful payment event
     switch (event.type) {
       case 'payment_intent.succeeded': {
+        //connecting to mongodb
+        const client = await clientPromise;
+        const db = client.db('textFlow');
+        //upsert - does both check and update user. Checking if
+        //sub exists
+        const userProfile = db.collection('users').updateOne(
+          {
+            auth0Id: user.sub, //filter or identifier
+          },
+          {
+            //increment
+            $inc: {
+              availableCredits: 10, //if it does exist create increment the count by 10
+            },
+            $setOnInsert: {
+              auth0Id: user.sub, //insert to the document the count
+            },
+          },
+          {
+            upsert: true,
+          }
+        );
       }
     }
   }
