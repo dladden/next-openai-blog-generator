@@ -2,16 +2,15 @@ import micro_cors from 'micro-cors';
 import StripeInit from 'stripe';
 import clientPromise from '@/lib/mongodb';
 /**
- * Stripe.js is used for webhooks (HTTP callbacks or notifications that occur when certain events or triggers)
+ * Stripe.js handles Stripe webhook events, specifically those related to payment intents.
+ *It is used for webhooks (HTTP callbacks or notifications that occur when certain events or triggers)
  * Endpoints used to reach external entity "Stripe"
  */
-
-const stripe = StripeInit(process.env.STRIPE_SECRET_KEY);
-const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET;
 
 const verifyStripe = async ({ req, stripe, endpointSecret }) => {
   async function buffer(readable) {
     const chunks = [];
+    //iterating over the chunks of data in the readable stream
     for await (const chunk of readable) {
       chunks.push(typeof chunk === 'string' ? Buffer.from(chunk) : chunk);
     }
@@ -40,12 +39,16 @@ export const config = {
     bodyParser: false,
   },
 };
+
+const stripe = StripeInit(process.env.STRIPE_SECRET_KEY);
+const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET;
+
 //Handler for this endpoint which checks if the data posted comes from Stripe with in event handler
 const handler = async (req, res) => {
   if (req.method === 'POST') {
     let event;
     try {
-      event = verifyStripe({
+      event = await verifyStripe({
         req,
         stripe,
         endpointSecret,
@@ -56,6 +59,22 @@ const handler = async (req, res) => {
     //listening for the successful payment event
     switch (event.type) {
       case 'payment_intent.succeeded': {
+        if (typeof event.type !== 'undefined') {
+          // The event.type property exists
+          console.log('Event type:', event.type);
+
+          // Now you can check its value, e.g., for a specific event type
+          if (event.type === 'payment_intent.succeeded') {
+            // Handle the 'payment_intent.succeeded' event
+            console.log('Payment succeeded!');
+          } else {
+            // Handle other event types if needed
+          }
+        } else {
+          // The event.type property does not exist
+          console.log('Event type is undefined.');
+        }
+        console.log('Payment Intent Succeeded');
         //connecting to mongodb
         const client = await clientPromise;
         const db = client.db('textFlow');
@@ -81,9 +100,15 @@ const handler = async (req, res) => {
             upsert: true,
           }
         );
+        break; //exiting the switch
       }
+      //Logging the unhandled event in the switch statement
+      default:
+        console.log('Unhandled Event: ', event.type);
     }
+    res.status(200).json({ received: true });
   }
 };
+
 //Exporting the handler within the cors functions
 export default cors(handler);
