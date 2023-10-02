@@ -2,8 +2,6 @@ import { Layout } from '@/components/layout/Layout';
 import { getSession, withPageAuthRequired } from '@auth0/nextjs-auth0';
 import clientPromise from '@/lib/mongodb';
 import { ObjectId } from 'mongodb';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHashtag } from '@fortawesome/free-solid-svg-icons';
 import { getAppProps } from '@/utils/getAppProps';
 /*
 This is a dynamic root file aka: "[name].js" which allows to have

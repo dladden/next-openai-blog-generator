@@ -40,37 +40,42 @@ export default function newPost(props) {
     // setPostContent(json.post.postContent);
   };
   return (
-    <div>
+    <div className="h-full overflow-hidden">
       {/* FORM SECTION */}
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>
-            <strong>Topic:</strong>
-          </label>
-          <textarea
-            className=" resize-none border border-neutral-300 w-[30rem] my-2 px-10 py-2 rounded"
-            value={topic}
-            onChange={(e) => setTopic(e.target.value)}
-          />
-        </div>
-        <div>
-          <label>
-            <strong>Keywords:</strong>
-          </label>
-          <textarea
-            className=" resize-none border border-neutral-300 w-[30rem] my-2 px-4 py-2 rounded"
-            value={keywords}
-            onChange={(e) => setKeywords(e.target.value)}
-          />
-        </div>
-        <button type="submit" className="btn px-4 py-2">
-          Generate
-        </button>
-      </form>
-      <div
-        className="max-w-screen-sm p-10"
-        // dangerouslySetInnerHTML={{ __html: postContent }}
-      />
+      <div className="w-full h-full flex flex-col overflow-auto ">
+        <form
+          onSubmit={handleSubmit}
+          className="m-auto w-full max-w-screen-sm bg-neutral-300 p-4 rounded-lg border"
+        >
+          <div>
+            <label>
+              <strong>Topic:</strong>
+            </label>
+            <textarea
+              className=" resize-none border border-neutral-300 w-[30rem] my-2 px-10 py-2 rounded"
+              value={topic}
+              onChange={(e) => setTopic(e.target.value)}
+            />
+          </div>
+          <div>
+            <label>
+              <strong>Keywords:</strong>
+            </label>
+            <textarea
+              className=" resize-none border border-neutral-300 w-[30rem] my-2 px-4 py-2 rounded"
+              value={keywords}
+              onChange={(e) => setKeywords(e.target.value)}
+            />
+          </div>
+          <button type="submit" className="btn px-4 py-2">
+            Generate
+          </button>
+        </form>
+        <div
+          className="max-w-screen-sm p-10"
+          // dangerouslySetInnerHTML={{ __html: postContent }}
+        />
+      </div>
     </div>
   );
 }
