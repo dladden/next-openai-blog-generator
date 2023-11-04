@@ -3,7 +3,7 @@
 </p>
 <h2 align="center">textFlow</h2>
 
-#### The app is built using NextJS, Stripe, and MongoDB, Auth0 and OpenAi with goal of creating a seamless blog generator. Not all features have been implemented in this project however this minimum viable product has core features like creating a user and storing users data such as credits used to generate the blogs, the blogs and credentials is implemented. Additionally, for secure processing of payment Stripe used as a seamless payment processing and user credit management. [app screenshots](#demo)
+#### The app is built using NextJS, Stripe, and MongoDB, Auth0 and OpenAi with goal of creating a seamless blog generator. Not all features have been implemented in this project however this minimum viable product has core features like creating a user and storing users data such as credits used to generate the blogs, the blogs and credentials is implemented. Additionally, for secure processing of payment Stripe used as a seamless payment processing and user credit management. You can view the screenshots here: [app screenshots](#demo)
 
 ## This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
