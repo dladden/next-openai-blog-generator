@@ -63,7 +63,7 @@ MongoDB Atlas is particularly useful when you want to focus more on developing y
 ## Demo <a name="demo"></a>
 
 <p align="center">
-  <img src="public/img/textFlow-01.png" alt="Example Image" style="width:70%;" />
+  <img src="public/img/textflow-01.png" alt="Example Image" style="width:70%;" />
 </p>
 
 <p align="center">
