@@ -1,4 +1,11 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<p align="center">
+  <img src="public/img/textFlow-logo-01.png" alt="Example Image" style="width:10%;" />
+</p>
+<h2 align="center">textFlow</h2>
+
+#### The app is built using NextJS, Stripe, and MongoDB, Auth0 and OpenAi with goal of creating a seamless blog generator. Not all features have been implemented in this project however this minimum viable product has core features like creating a user and storing users data such as credits used to generate the blogs, the blogs and credentials is implemented. Additionally, for secure processing of payment Stripe used as a seamless payment processing and user credit management. [app screenshots](#demo)
+
+## This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
 
@@ -31,15 +38,9 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+# OpenAI's "Conversational AI" framework is designed to facilitate dynamic and interactive conversations.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-
-OpenAI's "Conversational AI" framework is designed to facilitate dynamic and interactive conversations.
-
-Roles:
+## Roles:
 
 User: The User is you or the person interacting with the system. You provide input to the conversation and receive responses from the Assistant. Your inputs can be in the form of messages or prompts, and they guide the direction of the conversation.
 
@@ -47,9 +48,9 @@ Assistant: The Assistant is the language model, such as GPT-3.5-turbo, which gen
 
 System: The System is a part of the conversational setup that helps guide the behavior of the Assistant. It provides high-level instructions or context to the Assistant, helping it stay on topic or adopt a specific tone. The System's role is to influence the style, content, or behavior of the Assistant throughout the conversation.
 
-This project uses MongoDB Atlas
+# This project uses MongoDB Atlas
 
-MongoDB Atlas:
+## MongoDB Atlas:
 
 MongoDB Atlas is a Database as a Service (DBaaS) provided by MongoDB, Inc. It's a cloud-based platform designed to simplify the deployment, scaling, and management of MongoDB databases.
 
@@ -58,3 +59,17 @@ MongoDB Atlas offers a fully managed and automated MongoDB service in the cloud.
 It provides features like automated backups, scaling, monitoring, security, and integration with other cloud services (e.g., AWS, Azure, Google Cloud).
 
 MongoDB Atlas is particularly useful when you want to focus more on developing your application and less on managing the underlying database infrastructure.
+
+## Demo <a name="demo"></a>
+
+<p align="center">
+  <img src="public/img/textFlow-01.png" alt="Example Image" style="width:70%;" />
+</p>
+
+<p align="center">
+  <img src="public/img/textFlow-03.png" alt="Example Image" style="width:70%;" />
+</p>
+
+<p align="center">
+  <img src="public/img/textFlow-02.png" alt="Example Image" style="width:70%;" />
+</p>
